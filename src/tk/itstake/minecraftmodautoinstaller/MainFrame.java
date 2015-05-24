@@ -9,7 +9,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Toolkit;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +21,7 @@ import javax.swing.JScrollBar;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import net.lingala.zip4j.exception.ZipException;
 
 /**
  *
@@ -36,6 +39,9 @@ public class MainFrame extends javax.swing.JFrame {
     String unzippath = null;
     ColoredComponents cc = new ColoredComponents();
     Color colorCom = cc.getComponentColor();
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Dimension screenSize = tk.getScreenSize();
+    Dimension panelSize = this.getSize();
     public static Font font;
     private final ImageIcon wicon = new ImageIcon(getClass().getResource("/img/logoback.png"));
     private static String OS = System.getProperty("os.name").toLowerCase();
@@ -72,6 +78,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(title);
         setIconImage(wicon.getImage());
+        setLocation(screenSize.width/2-200,screenSize.height/2-85);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(400, 150));
@@ -189,6 +196,10 @@ public class MainFrame extends javax.swing.JFrame {
         try {
             unzip.unzip(path);
         } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ZipException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(!settings.getProperty("profilename").equals("")) {

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Properties;
@@ -32,6 +33,9 @@ public class EndDialog extends javax.swing.JFrame {
     ColoredComponents cc = new ColoredComponents();
     Color colorCom = cc.getComponentColor();
     String installCom = null;
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Dimension screenSize = tk.getScreenSize();
+    Dimension panelSize = this.getSize();
     private final ImageIcon wicon = new ImageIcon(getClass().getResource("/img/logoback.png"));
     public EndDialog() throws FontFormatException, IOException {
         SettingHandling sh = new SettingHandling();
@@ -61,6 +65,7 @@ public class EndDialog extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("완료!");
         setIconImage(wicon.getImage());
+        setLocation(screenSize.width/2-174,screenSize.height/2-90);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
@@ -143,7 +148,7 @@ public class EndDialog extends javax.swing.JFrame {
         if(!settings.getProperty("endlink").equals("")) {
             openURL(settings.getProperty("endlink"));
         }
-        openURL("http://itstake.tk");
+        openURL("http://itstake.tk/mmai");
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 

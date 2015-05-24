@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
@@ -33,6 +34,9 @@ public class UpdateDialog extends javax.swing.JFrame {
     ColoredComponents cc = new ColoredComponents();
     Color colorCom = cc.getComponentColor();
     String updateDescript = null;
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Dimension screenSize = tk.getScreenSize();
+    Dimension panelSize = this.getSize();
     private final ImageIcon wicon = new ImageIcon(getClass().getResource("/img/logoback.png"));
     public UpdateDialog() throws UnsupportedEncodingException, FontFormatException, IOException {
         SettingHandling sh = new SettingHandling();
@@ -60,6 +64,7 @@ public class UpdateDialog extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(screenSize.width/2-174,screenSize.height/2-90);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(null);
