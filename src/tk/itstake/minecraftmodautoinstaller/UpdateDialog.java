@@ -64,6 +64,7 @@ public class UpdateDialog extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(wicon.getImage());
         setLocation(screenSize.width/2-174,screenSize.height/2-90);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -91,7 +92,7 @@ public class UpdateDialog extends javax.swing.JFrame {
 
         jLabel2.setFont(font.deriveFont(Font.PLAIN, 12));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("MMAI v1.0 by ITSTAKE, itstake.tk");
+        jLabel2.setText("MMAI v1.0.1 by ITSTAKE, itstake.tk");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(120, 150, 210, 15);
 
