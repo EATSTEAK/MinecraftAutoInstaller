@@ -102,7 +102,7 @@
               <Connection code="font.deriveFont(Font.PLAIN, 12)" type="code"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="MMAI v1.0.1 by ITSTAKE, itstake.tk"/>
+            <Property name="text" type="java.lang.String" value="MMAI v1.0.2 by ITSTAKE, itstake.tk"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
