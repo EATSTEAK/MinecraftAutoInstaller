@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tk.itstake.minecraftmodautoinstaller;
+package tk.itstake.minecraftautoinstaller;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

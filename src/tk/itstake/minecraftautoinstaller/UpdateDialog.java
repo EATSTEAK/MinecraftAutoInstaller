@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tk.itstake.minecraftmodautoinstaller;
+package tk.itstake.minecraftautoinstaller;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Toolkit;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -23,25 +24,25 @@ import javax.swing.JScrollBar;
  *
  * @author itstake
  */
-public class EndDialog extends javax.swing.JFrame {
+public class UpdateDialog extends javax.swing.JFrame {
 
     /**
-     * Creates new form EndDialog
+     * Creates new form UpdateDialog
      */
     Properties settings = new Properties();
     public static Font font;
     ColoredComponents cc = new ColoredComponents();
     Color colorCom = cc.getComponentColor();
-    String installCom = null;
+    String updateDescript = null;
     Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension screenSize = tk.getScreenSize();
     Dimension panelSize = this.getSize();
     private final ImageIcon wicon = new ImageIcon(getClass().getResource("/img/logoback.png"));
-    public EndDialog() throws FontFormatException, IOException {
+    public UpdateDialog() throws UnsupportedEncodingException, FontFormatException, IOException {
         SettingHandling sh = new SettingHandling();
         settings = sh.getSettingFile();
-        installCom = new String(settings.getProperty("installcom").getBytes("ISO-8859-1"), "UTF-8");
-        EndDialog.font = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("/fonts/NanumBarunGothic.ttf")).deriveFont(Font.PLAIN, 0);
+        updateDescript = new String(settings.getProperty("updatedescription").getBytes("ISO-8859-1"), "UTF-8");
+        UpdateDialog.font = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("/fonts/NanumBarunGothic.ttf")).deriveFont(Font.PLAIN, 0);
         initComponents();
     }
 
@@ -63,7 +64,6 @@ public class EndDialog extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("완료!");
         setIconImage(wicon.getImage());
         setLocation(screenSize.width/2-174,screenSize.height/2-90);
 
@@ -73,14 +73,14 @@ public class EndDialog extends javax.swing.JFrame {
         jLabel1.setFont(font.deriveFont(Font.PLAIN, 24));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("설치가 완료되었습니다!");
+        jLabel1.setText("업데이트가 있습니다!");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(10, 0, 330, 40);
 
         jButton1.setBackground(colorCom);
         jButton1.setFont(font.deriveFont(Font.PLAIN, 14));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("종료");
+        jButton1.setText("업데이트");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +92,7 @@ public class EndDialog extends javax.swing.JFrame {
 
         jLabel2.setFont(font.deriveFont(Font.PLAIN, 12));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("MMAI v1.0.2 by ITSTAKE, itstake.tk");
+        jLabel2.setText("MAI v2.0 by ITSTAKE, itstake.tk");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(120, 150, 210, 15);
 
@@ -119,7 +119,7 @@ public class EndDialog extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(font.deriveFont(Font.PLAIN, 14));
         jTextArea1.setRows(5);
-        jTextArea1.setText(installCom);
+        jTextArea1.setText(updateDescript);
         jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
         JScrollBar vertical = jScrollPane1.getVerticalScrollBar();
@@ -132,9 +132,7 @@ public class EndDialog extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,10 +143,10 @@ public class EndDialog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!settings.getProperty("endlink").equals("")) {
-            openURL(settings.getProperty("endlink"));
+        if(!settings.getProperty("updatelink").equals("")) {
+            openURL(settings.getProperty("updatelink"));
         }
-        openURL("http://itstake.tk/mmai");
+        openURL("http://itstake.tk");
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -169,32 +167,31 @@ public class EndDialog extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EndDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EndDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EndDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EndDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UpdateDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new EndDialog().setVisible(true);
+                    new UpdateDialog().setVisible(true);
                 } catch (FontFormatException ex) {
-                    Logger.getLogger(EndDialog.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateDialog.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {
-                    Logger.getLogger(EndDialog.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UpdateDialog.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
     }
-    
-    private static final String errMsg = "Error attempting to launch web browser";
+   
+   private static final String errMsg = "Error attempting to launch web browser";
 
    public static void openURL(String url) {
       String osName = System.getProperty("os.name");

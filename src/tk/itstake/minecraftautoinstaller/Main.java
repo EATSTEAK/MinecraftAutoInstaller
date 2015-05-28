@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tk.itstake.minecraftmodautoinstaller;
+package tk.itstake.minecraftautoinstaller;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,7 +16,9 @@ import java.net.URLConnection;
 import java.net.UnknownHostException;
 import java.util.Properties;
 import javax.swing.UIManager;
-import tk.itstake.minecraftmodautoinstaller.MainFrame;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import tk.itstake.minecraftautoinstaller.MainFrame;
 
 /**
  *
@@ -36,7 +38,7 @@ public class Main {
         main.setLookandFeel();
         SettingHandling sh = new SettingHandling();
         Properties settings = sh.getSettingFile();
-        MainFrame gui = new MainFrame();
+        Properties unzipsettings = sh.getUnzipProperties();
         if(!settings.getProperty("versionlink").equals("") && !settings.getProperty("versionlocal").equals("")) {
             String webversion = main.getURLString(new URL(settings.getProperty("versionlink")));
             String localversion = settings.getProperty("versionlocal");
@@ -44,10 +46,22 @@ public class Main {
                 UpdateDialog ud = new UpdateDialog();
                 ud.main();
             } else {
-                gui.main();
+                if(unzipsettings.size() == 1) {
+                    MainFrame gui = new MainFrame();
+                    gui.main();
+                } else {
+                    MultiMainFrame gui = new MultiMainFrame();
+                    gui.main();
+                }
             }
         } else {
-            gui.main();
+            if(unzipsettings.size() == 1) {
+                MainFrame gui = new MainFrame();
+                gui.main();
+            } else {
+                MultiMainFrame gui = new MultiMainFrame();
+                gui.main();
+            }
         }
         
         
@@ -93,6 +107,9 @@ public class Main {
         UIManager.put("OptionPane.background", new javax.swing.plaf.ColorUIResource(Color.WHITE));
         UIManager.put("Label.background", new javax.swing.plaf.ColorUIResource(Color.WHITE));
         UIManager.put("Panel.background", new javax.swing.plaf.ColorUIResource(Color.WHITE));
+        UIManager.put("CheckBox.background", new javax.swing.plaf.ColorUIResource(Color.WHITE));
+        UIManager.put("CheckBox.border", new EmptyBorder(1, 1, 1, 1));
+        UIManager.put("CheckBox.select", new javax.swing.plaf.ColorUIResource(Color.WHITE));
     }
     
 }

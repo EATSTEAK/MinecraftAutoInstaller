@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tk.itstake.minecraftmodautoinstaller;
+package tk.itstake.minecraftautoinstaller;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,6 +12,7 @@ import java.awt.FontFormatException;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,10 +34,13 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form GUI
      */
     Properties settings = new Properties();
+    Properties unzipsettings = new Properties();
+    Properties unzipprofile = new Properties();
     String path = null;
     String title = null;
     String description = null;
     String unzippath = null;
+    String unzipfile = null;
     ColoredComponents cc = new ColoredComponents();
     Color colorCom = cc.getComponentColor();
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -49,10 +53,14 @@ public class MainFrame extends javax.swing.JFrame {
         MainFrame.font = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("/fonts/NanumBarunGothic.ttf")).deriveFont(Font.PLAIN, 0);
         SettingHandling sh = new SettingHandling();
         settings = sh.getSettingFile();
+        unzipsettings = sh.getUnzipProperties();
+        Enumeration<?> pn = unzipsettings.propertyNames();
+        unzipprofile = sh.getUnzipProfileProperties((String) pn.nextElement());
         path = new String(System.getenv("APPDATA").getBytes("ISO-8859-1"), "UTF-8");
         title = new String(settings.getProperty("title").getBytes("ISO-8859-1"), "UTF-8");
         description = new String(settings.getProperty("description").getBytes("ISO-8859-1"), "UTF-8");
-        unzippath = new String(settings.getProperty("unzippath").getBytes("ISO-8859-1"), "UTF-8");
+        unzippath = new String(unzipprofile.getProperty("unzippath").getBytes("ISO-8859-1"), "UTF-8");
+        unzipfile = new String(unzipprofile.getProperty("zippath").getBytes("ISO-8859-1"), "UTF-8");
         initComponents();
     }
 
@@ -79,6 +87,7 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle(title);
         setIconImage(wicon.getImage());
         setLocation(screenSize.width/2-200,screenSize.height/2-85);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMinimumSize(new java.awt.Dimension(400, 150));
@@ -171,7 +180,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(font.deriveFont(Font.PLAIN, 14));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("MMAI v1.0.2 by ITSTAKE, itstake.tk");
+        jLabel2.setText("MAI v2.0 by ITSTAKE, itstake.tk");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(130, 150, 260, 15);
 
@@ -194,7 +203,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         UnZipper unzip = new UnZipper();
         try {
-            unzip.unzip(path);
+            unzip.unzip(unzipfile, path);
         } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {

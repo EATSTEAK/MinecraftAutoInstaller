@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tk.itstake.minecraftmodautoinstaller;
+package tk.itstake.minecraftautoinstaller;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,5 +29,27 @@ public class SettingHandling {
             System.exit(1);
         }
         return settings;
+    }
+    
+    public Properties getUnzipProperties() throws IOException {
+        Properties unzipsettings = new Properties();
+        try {
+            InputStream fis = this.getClass().getResourceAsStream("/settings/unzip.properties");
+            unzipsettings.load(fis);
+        } catch (FileNotFoundException e) {
+            System.err.println("설정 파일이 없습니다! 설치기를 종료합니다.");
+            System.exit(1);
+        }
+        return unzipsettings;
+    }
+    public Properties getUnzipProfileProperties(String profilename) throws IOException {
+        System.out.println(profilename);
+        Properties profiles = new Properties();
+        try {
+            InputStream fis = this.getClass().getResourceAsStream("/settings/" + profilename);
+            profiles.load(fis);
+        } catch (FileNotFoundException e) {
+        }
+        return profiles;
     }
 }

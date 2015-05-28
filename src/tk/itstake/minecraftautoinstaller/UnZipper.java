@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tk.itstake.minecraftmodautoinstaller;
+package tk.itstake.minecraftautoinstaller;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,10 +20,10 @@ import net.lingala.zip4j.exception.ZipException;
  */
 public class UnZipper {
     
-    public final void unzip(String extractTo) throws IOException, URISyntaxException, ZipException {
-        File file = new File("un.zip");
+    public final void unzip(String zipfile, String extractTo) throws IOException, URISyntaxException, ZipException {
+        File file = new File(zipfile);
         
-      InputStream inputStream = this.getClass().getResourceAsStream("/zip/un.zip");
+      InputStream inputStream = this.getClass().getResourceAsStream("/zip/" + zipfile);
 
       OutputStream outStream = new FileOutputStream(file);
 
@@ -46,5 +46,6 @@ public class UnZipper {
         ZipFile zipFile;
         zipFile = new ZipFile(file);
         zipFile.extractAll(extractTo);
+        file.delete();
     }
 }
