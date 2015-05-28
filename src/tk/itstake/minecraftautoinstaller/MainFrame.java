@@ -110,9 +110,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1.add(jTextField1);
         jTextField1.setBounds(10, 90, 300, 17);
         if(isWindows()) {
-            path = System.getenv("APPDATA") + "\\.minecraft\\" +  unzippath;
+            path = System.getenv("APPDATA") + "\\.minecraft";
         } else if(isMac()) {
-            path = System.getenv("APPDATA") + "\\minecraft\\" + unzippath;
+            path = System.getenv("APPDATA") + "\\minecraft";
         } else {
             path = "이 OS 에서 사용하는 마인크래프트의 기본 경로를 찾을 수 없습니다! 왼쪽 버튼을 클릭하여 수동선택 해주세요.";
         }
@@ -203,7 +203,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         UnZipper unzip = new UnZipper();
         try {
-            unzip.unzip(unzipfile, path);
+            unzip.unzip(unzipfile, path + unzippath);
         } catch (IOException ex) {
             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
