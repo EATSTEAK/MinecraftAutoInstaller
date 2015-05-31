@@ -74,15 +74,6 @@ public class InstallHandling {
         } else {
             backuptopath = path + "\\" + profile.getProperty("backuptopath");
         }
-        
-        if(deletemode) {
-            File deletefile = new File(deletepath);
-            if(deletefile.isDirectory()) {
-                deleteDirectory(deletefile);
-            } else {
-                deletefile.delete();
-            }
-        }
         if(backupmode) {
             File fromfile = new File(backupfrompath);
             File tofile = new File(backuptopath);
@@ -90,6 +81,14 @@ public class InstallHandling {
                 copyDirectory(fromfile, tofile);
             } catch (IOException ex) {
                 Logger.getLogger(InstallHandling.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(deletemode) {
+            File deletefile = new File(deletepath);
+            if(deletefile.isDirectory()) {
+                deleteDirectory(deletefile);
+            } else {
+                deletefile.delete();
             }
         }
         if(!nounzip) {
