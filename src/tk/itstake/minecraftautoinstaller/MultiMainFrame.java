@@ -198,7 +198,7 @@ public class MultiMainFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(font.deriveFont(Font.PLAIN, 14));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("MAI v2.0 by ITSTAKE, itstake.tk");
+        jLabel2.setText("MAI v2.1 by ITSTAKE, itstake.tk");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(440, 370, 260, 15);
 
@@ -279,20 +279,16 @@ public class MultiMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        UnZipper unzip = new UnZipper();
         System.out.println(installarray);
-        try {
-            for(String key : installarray.keySet()) {
+        for(String key : installarray.keySet()) {
+            try {
                 SettingHandling sh = new SettingHandling();
                 Properties profile = sh.getUnzipProfileProperties(key);
-                unzip.unzip(profile.getProperty("zippath"), path + "\\" + profile.getProperty("unzippath"));
+                InstallHandling ih = new InstallHandling();
+                ih.InstallProfile(profile, path);
+            } catch (IOException ex) {
+                Logger.getLogger(MultiMainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ZipException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(!settings.getProperty("profilename").equals("")) {
             ProfileCreator pc = new ProfileCreator();

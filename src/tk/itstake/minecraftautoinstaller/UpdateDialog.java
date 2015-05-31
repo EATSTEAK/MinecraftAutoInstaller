@@ -92,7 +92,7 @@ public class UpdateDialog extends javax.swing.JFrame {
 
         jLabel2.setFont(font.deriveFont(Font.PLAIN, 12));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("MAI v2.0 by ITSTAKE, itstake.tk");
+        jLabel2.setText("MAI v2.1 by ITSTAKE, itstake.tk");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(120, 150, 210, 15);
 

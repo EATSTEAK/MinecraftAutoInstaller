@@ -39,8 +39,6 @@ public class MainFrame extends javax.swing.JFrame {
     String path = null;
     String title = null;
     String description = null;
-    String unzippath = null;
-    String unzipfile = null;
     ColoredComponents cc = new ColoredComponents();
     Color colorCom = cc.getComponentColor();
     Toolkit tk = Toolkit.getDefaultToolkit();
@@ -59,8 +57,6 @@ public class MainFrame extends javax.swing.JFrame {
         path = new String(System.getenv("APPDATA").getBytes("ISO-8859-1"), "UTF-8");
         title = new String(settings.getProperty("title").getBytes("ISO-8859-1"), "UTF-8");
         description = new String(settings.getProperty("description").getBytes("ISO-8859-1"), "UTF-8");
-        unzippath = new String(unzipprofile.getProperty("unzippath").getBytes("ISO-8859-1"), "UTF-8");
-        unzipfile = new String(unzipprofile.getProperty("zippath").getBytes("ISO-8859-1"), "UTF-8");
         initComponents();
     }
 
@@ -180,7 +176,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel2.setFont(font.deriveFont(Font.PLAIN, 14));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("MAI v2.0 by ITSTAKE, itstake.tk");
+        jLabel2.setText("MAI v2.1 by ITSTAKE, itstake.tk");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(130, 150, 260, 15);
 
@@ -201,16 +197,8 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        UnZipper unzip = new UnZipper();
-        try {
-            unzip.unzip(unzipfile, path + unzippath);
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ZipException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        InstallHandling ih = new InstallHandling();
+        ih.InstallProfile(unzipprofile, path);
         if(!settings.getProperty("profilename").equals("")) {
         ProfileCreator pc = new ProfileCreator();
         try {
