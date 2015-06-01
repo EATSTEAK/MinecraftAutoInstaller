@@ -292,7 +292,7 @@
                 </Property>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="jList1.setModel(model);&#xd;&#xa;jList1.setCellRenderer(new CheckboxListCellRenderer());&#xd;&#xa;jList1.addMouseListener(new MouseAdapter() {&#xd;&#xa;      public void mousePressed(MouseEvent e) {&#xd;&#xa;        int index = jList1.locationToIndex(e.getPoint());&#xd;&#xa;        if (index != -1) {&#xd;&#xa;          JCheckBox checkbox = (JCheckBox) jList1.getModel().getElementAt(index);&#xd;&#xa;          checkbox.setSelected(!checkbox.isSelected());&#xd;&#xa;          installarray.put((String)installarray.keySet().toArray()[index], checkbox.isSelected());&#xd;&#xa;          jList1.repaint();&#xd;&#xa;        }&#xd;&#xa;      }&#xd;&#xa;    });"/>
+                <AuxValue name="JavaCodeGenerator_allCodePost" type="java.lang.String" value="jList1.setModel(model);&#xd;&#xa;jList1.setCellRenderer(new CheckboxListCellRenderer());&#xd;&#xa;jList1.addMouseListener(new MouseAdapter() {&#xd;&#xa;      public void mousePressed(MouseEvent e) {&#xd;&#xa;        int index = jList1.locationToIndex(e.getPoint());&#xd;&#xa;        if (index != -1) {&#xd;&#xa;            JCheckBox checkbox = (JCheckBox) jList1.getModel().getElementAt(index);&#xd;&#xa;            if(checkbox.isEnabled()) {&#xd;&#xa;                checkbox.setSelected(!checkbox.isSelected());&#xd;&#xa;                installarray.put((String)installarray.keySet().toArray()[index], checkbox.isSelected());&#xd;&#xa;                jList1.repaint();&#xd;&#xa;            }&#xd;&#xa;        }&#xd;&#xa;      }&#xd;&#xa;    });"/>
               </AuxValues>
             </Component>
           </SubComponents>

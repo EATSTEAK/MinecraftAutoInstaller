@@ -34,42 +34,42 @@ public class InstallHandling {
         boolean backupmode;
         String backupfrompath;
         String backuptopath;
-        if(profile.getProperty("checked").equals("false")) {
+        if(profile.containsKey("checked") && profile.getProperty("checked").equals("false")) {
             checked = false;
         } else {
             checked = true;
         }
-        if(profile.getProperty("change").equals("false")) {
+        if(profile.containsKey("change") && profile.getProperty("change").equals("false")) {
             change = false;
         } else {
             change = true;
         }
-        if(profile.getProperty("deletemode").equals("true")) {
+        if(profile.containsKey("deletemode") && profile.getProperty("deletemode").equals("true")) {
             deletemode = true;
         } else {
             deletemode = false;
         }
-        if(profile.getProperty("deletepath").equals("")) {
+        if(profile.containsKey("deletepath") && profile.getProperty("deletepath").equals("")) {
             deletepath = path;
         } else {
             deletepath = path + "\\" + profile.getProperty("deletepath");
         }
-        if(profile.getProperty("nounzip").equals("true")) {
+        if(profile.containsKey("nounzip") && profile.getProperty("nounzip").equals("true")) {
             nounzip = true;
         } else {
             nounzip = false;
         }
-        if(profile.getProperty("backupmode").equals("true")) {
+        if(profile.containsKey("backupmode") && profile.getProperty("backupmode").equals("true")) {
             backupmode = true;
         } else {
             backupmode = false;
         }
-        if(profile.getProperty("backupfrompath").equals("")) {
+        if(profile.containsKey("backupfrompath") && profile.getProperty("backupfrompath").equals("")) {
             backupfrompath = path;
         } else {
             backupfrompath = path + "\\" + profile.getProperty("backupfrompath");
         }
-        if(profile.getProperty("backuptopath").equals("")) {
+        if(profile.containsKey("backuptopath") && profile.getProperty("backuptopath").equals("")) {
             backuptopath = path + "backup";
         } else {
             backuptopath = path + "\\" + profile.getProperty("backuptopath");

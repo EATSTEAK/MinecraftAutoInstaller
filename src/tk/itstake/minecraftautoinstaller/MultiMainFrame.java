@@ -226,9 +226,11 @@ public class MultiMainFrame extends javax.swing.JFrame {
                 int index = jList1.locationToIndex(e.getPoint());
                 if (index != -1) {
                     JCheckBox checkbox = (JCheckBox) jList1.getModel().getElementAt(index);
-                    checkbox.setSelected(!checkbox.isSelected());
-                    installarray.put((String)installarray.keySet().toArray()[index], checkbox.isSelected());
-                    jList1.repaint();
+                    if(checkbox.isEnabled()) {
+                        checkbox.setSelected(!checkbox.isSelected());
+                        installarray.put((String)installarray.keySet().toArray()[index], checkbox.isSelected());
+                        jList1.repaint();
+                    }
                 }
             }
         });
